@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title>Chasyxx's minibaker</title>
+        <style>
+            @font-face {
+            font-family: "retro";
+            src: url(Prisma.ttf) format("truetype");
+            }
+            body {
+                font-family: "retro";
+                font-size: 16px;
+                color: #dbad87;
+                background-color: black
+            }
+        </style>
+        <script>
+        globalThis.baker = new class {
+            constructor() {
+                this.in = null;
+                this.temp = null;
+                this.c1 = null;
+                this.c2 = null;
+                this.cc1 = null;
+                this.cc2 = null;
+                this.cmb = null;
+            }
+        minibake = function( str ){
+            str = str.replace( /, /g, ",");
+            let len = Math.floor( str.length / 2 );
+            let output = "";
+            for(let i=0; i<len; i++){
+                this.c1 = str.substring( i * 2, i * 2 + 1);
+                this.c2 = str.substring( i * 2 + 1, i * 2 + 2);
+                this.cc1 = this.c1.charCodeAt(0);
+                this.cc2 = this.c2.charCodeAt(0);
+                this.cmb = (this.cc1 << 8) | this.cc2;
+                output += String.fromCharCode(this.cmb);
+                //output += String.fromCodePoint(cmb);
+            }
+        return output;
+        }
+        bake = function(str) {
+            let out = document.getElementById(`output`)
+            this.in = str
+            this.temp = baker.minibake(str)
+            out.innerHTML= ("eval(unescape(escape&#96;" + this.temp + "&#96;.replace(/u(..)/g,&quot;$1%&quot;)))")
+        }
+    }
+        </script>
+    </head>
+    <body>
+        <h1 align="center">Chasyxx's minibaker</h1>
+        <p align="center">Put your code into the box below and your eval(unescape(escape())) code will appear below it</p>
+        <textarea id="inputbox" onchange="baker.bake(this.value)" align="center">t</textarea>
+        <div id="output" align="center" style="outline-width: 4px; outline-color: green; outline-style: ridge; font-family: 'Courier New', Courier, monospace;">Not this box!</div>
+    </body>
+</html>
