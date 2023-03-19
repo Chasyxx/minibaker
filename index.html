@@ -8,9 +8,13 @@
             }
             body {
                 font-family: "retro";
-                font-size: 16px;
+                font-size: 30px;
                 color: #dbad87;
-                background-color: black
+                background-color: #000000
+            }
+            h1 {
+                font-family: "retro";
+                font-size: 60px;
             }
         </style>
         <script>
@@ -23,8 +27,9 @@
                 this.cc1 = null;
                 this.cc2 = null;
                 this.cmb = null;
+                this.sts = null;
             }
-        minibake = function( str ){
+        minibake = function(str){
             str = str.replace( /, /g, ",");
             let len = Math.floor( str.length / 2 );
             let output = "";
@@ -41,11 +46,13 @@
         }
         bake = function(str) {
             let out = document.getElementById(`output`)
+            let out2 = document.getElementById(`output2`)
                         if (str.length&1) {
                 str = str + " "
             }
             this.in=str
             this.temp = baker.minibake(str)
+            out2.innerHTML = (this.temp)
             out.innerHTML= ("eval(unescape(escape&#96;" + this.temp + "&#96;.replace(/u(..)/g,&quot;$1%&quot;)))")
         }
     }
@@ -54,7 +61,10 @@
     <body>
         <h1 align="center">Chasyxx's minibaker</h1>
         <p align="center">Put your code into the box below and your eval(unescape(escape())) code will appear below it</p>
-        <textarea id="inputbox" onchange="baker.bake(this.value)" align="center">t</textarea>
-        <div id="output" align="center" style="outline-width: 4px; outline-color: green; outline-style: ridge; font-family: 'Courier New', Courier, monospace;">Not this box!</div>
+        <div align="center"><textarea id="inputbox" onchange="baker.bake(this.value)" align="center">Input: t&t>>8</textarea></div>
+        <p></p>
+        <div id="output" align="center" style="outline-width: 4px; outline-color: green; outline-style: ridge; font-family: 'Courier New', Courier, monospace; font-size: 20px;">Minibake: eval(unescape(escape`琦琾㸸`.replace(/u(..)/g,"$1%")))</div>
+        <p></p>
+        <div id="output2" align="center" style="outline-width: 4px; outline-color: blue; outline-style: ridge; font-family: 'Courier New', Courier, monospace; font-size: 20px;">Obfuscation only: 琦琾㸸</div>
     </body>
 </html>
