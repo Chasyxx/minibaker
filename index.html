@@ -41,7 +41,10 @@
         }
         bake = function(str) {
             let out = document.getElementById(`output`)
-            this.in = str
+                        if (str.length&1) {
+                str = str + " "
+            }
+            this.in=str
             this.temp = baker.minibake(str)
             out.innerHTML= ("eval(unescape(escape&#96;" + this.temp + "&#96;.replace(/u(..)/g,&quot;$1%&quot;)))")
         }
