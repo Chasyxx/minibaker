@@ -44,14 +44,15 @@
             }
         return output;
         }
-        bake = function(str) {
+        bake = function() {
             let out = document.getElementById(`output`)
             let out2 = document.getElementById(`output2`)
-                        if (str.length&1) {
-                str = str + " "
+            let inputbox = document.getElementById(`inputbox`)
+            this.in=inputbox.value
+                        if (this.in.length&1) {
+                this.in = this.in + " "
             }
-            this.in=str
-            this.temp = baker.minibake(str)
+            this.temp = baker.minibake(this.in)
             out2.innerHTML = (this.temp)
             out.innerHTML= ("eval(unescape(escape&#96;" + this.temp + "&#96;.replace(/u(..)/g,&quot;$1%&quot;)))")
         }
@@ -61,7 +62,9 @@
     <body>
         <h1 align="center">Chasyxx's minibaker</h1>
         <p align="center">Put your code into the box below and your eval(unescape(escape())) code will appear below it</p>
-        <div align="center"><textarea id="inputbox" onchange="baker.bake(this.value)" align="center">Input: t&t>>8</textarea></div>
+        <div align="center"><textarea id="inputbox" align="center">Input: t&t>>8</textarea></div>
+        <p></p>
+        <div align=center><button onclick="baker.bake()">Convert</button></div>
         <p></p>
         <div id="output" align="center" style="outline-width: 4px; outline-color: green; outline-style: ridge; font-family: 'Courier New', Courier, monospace; font-size: 20px;">Minibake: eval(unescape(escape`琦琾㸸`.replace(/u(..)/g,"$1%")))</div>
         <p></p>
