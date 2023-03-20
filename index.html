@@ -53,8 +53,8 @@
                 this.in = this.in + " "
             }
             this.temp = baker.minibake(this.in)
-            out2.innerText = (this.temp)
-            out.innerText= ("eval(unescape(escape&#96;" + this.temp + "&#96;.replace(/u(..)/g,&quot;$1%&quot;)))")
+            out2.innerHTML = (this.temp)
+            out.innerHTML = ("eval(unescape(escape&#96;" + this.temp + "&#96;.replace(/u(..)/g,&quot;$1%&quot;)))")
         }
         debake = function() {
             let inputbox = document.getElementById(`inputbox2`)
